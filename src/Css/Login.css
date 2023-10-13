@@ -1,0 +1,24 @@
+.login-form {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.login-body .form-wrapper {
+  margin-bottom: 20px;
+}
+.login-img img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+.login-form .form__content {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 0;
+}
