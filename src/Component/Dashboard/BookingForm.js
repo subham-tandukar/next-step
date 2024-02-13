@@ -8,9 +8,13 @@ import { useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Toast from "../Toast";
+import $ from "jquery";
+import Success from "./Success";
+import CourseContext from "../Context/courseContextFolder/courseContext";
 
 const BookingForm = () => {
   const { baseURL } = useContext(NavbarContext);
+  const { courseLst } = useContext(CourseContext);
   //   to get course id
   const { id } = useParams();
 
@@ -22,7 +26,7 @@ const BookingForm = () => {
 
   const initialValue = {
     courseName: course,
-    price: parseInt(price) / 100,
+    price: parseInt(price),
     fullname: "",
     email: "",
     number: "",
@@ -50,37 +54,86 @@ const BookingForm = () => {
       });
     } else {
       setIsSubmit(true);
-      const payload = {
-        return_url: "http://localhost:3000/success",
-        website_url: "http://localhost:3000/",
-        amount: parseInt(price),
-        purchase_order_id: id,
-        purchase_order_name: course,
-        customer_info: {
-          name: formValue.fullname,
-          email: formValue.email,
-          phone: formValue.number,
-        },
-      };
+      booking();
+      editData();
+      setTimeout(() => {
+        setIsSubmit(false);
+        $(".timeoutBg").fadeIn(300);
+        $(".timeoutPop").fadeIn(500);
+      }, 1000);
+      // const payload = {
+      //   return_url: "http://localhost:3000/success",
+      //   website_url: "http://localhost:3000/",
+      //   amount: parseInt(price),
+      //   purchase_order_id: id,
+      //   purchase_order_name: course,
+      //   customer_info: {
+      //     name: formValue.fullname,
+      //     email: formValue.email,
+      //     phone: formValue.number,
+      //   },
+      // };
 
-      const res = await axios.post(`${baseURL}/api/khaltiPayment`, payload);
-      console.log("res", res);
-      if (res && res?.data?.data?.payment_url) {
-        window.location.href = `${res?.data?.data?.payment_url}`;
-        booking();
-      }
+      // const res = await axios.post(`${baseURL}/api/khaltiPayment`, payload);
+      // console.log("res", res);
+      // if (res && res?.data?.data?.payment_url) {
+      //   window.location.href = `${res?.data?.data?.payment_url}`;
+      //   booking();
+      // }
     }
   };
 
+  // const booking = () => {
+  //   const dataForm = {
+  //     Course: course,
+  //     CourseID: id,
+  //     Fullname: formValue.fullname,
+  //     Email: formValue.email,
+  //     PhoneNumber: formValue.number,
+  //     Address: formValue.address,
+  //   };
+  //   localStorage.setItem("booking", JSON.stringify(dataForm));
+  // };
+
+  // if payment is done successfully,
+  // deduct the no of seat for particular course by 1
+  const editData = () => {
+    const dataForm = {
+      FLAG: "BOOKED",
+      CourseID: id,
+      FetchURL: `${baseURL}/api/course`,
+      Type: "POST",
+    };
+    Fetchdata(dataForm)
+      .then(function (result) {
+        if (result.StatusCode === 200) {
+          courseLst();
+        } else {
+        }
+      })
+      .catch((result) => {});
+  };
+
+  // to set the data of user who booked the course
   const booking = () => {
     const dataForm = {
+      FLAG: "I",
       Course: course,
       Fullname: formValue.fullname,
       Email: formValue.email,
       PhoneNumber: formValue.number,
       Address: formValue.address,
+      IsPaid: true,
+      FetchURL: `${baseURL}/api/booking`,
+      Type: "POST",
     };
-    localStorage.setItem("booking", JSON.stringify(dataForm));
+    Fetchdata(dataForm)
+      .then(function (result) {
+        if (result.StatusCode === 200) {
+        } else {
+        }
+      })
+      .catch((result) => {});
   };
 
   return (
@@ -194,7 +247,7 @@ const BookingForm = () => {
                   </div>
                 </div>
                 <button className="btn mt-30" onClick={handleSubmit}>
-                  <span>Pay through Khalti</span>
+                  <span>Book Now</span>
                 </button>
               </form>
             </div>
@@ -202,6 +255,7 @@ const BookingForm = () => {
         </section>
 
         <Footer />
+        <Success course={course} />
       </div>
     </>
   );

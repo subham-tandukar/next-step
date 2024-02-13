@@ -15,7 +15,7 @@ function CategoryState(props) {
   const [formValue, setFormValue] = useState(initialValue);
   const [isSubmit, setIsSubmit] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [originalList, setOriginalList] = useState(null);
+  const [originalList, setOriginalList] = useState([]);
 
   //API to hit category list
   const [categoryList, setCategoryList] = useState([]);

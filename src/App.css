@@ -552,13 +552,17 @@ textarea {
 .card__section .wrapper .project__footer {
   padding: 15px 20px;
   border-top: 1px solid #e3dddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .card__section .wrapper .project__head {
   padding: 15px 20px;
   border-bottom: 1px solid #e3dddd;
 }
 .card__section .wrapper .project__head svg,
-.card__section .wrapper .project__head span {
+.card__section .wrapper .project__head span,
+.card__section .comments span {
   font-size: 12px;
   color: #555;
   font-weight: 600;
@@ -567,6 +571,12 @@ textarea {
 .card__section .wrapper .project__head svg {
   margin-right: 5px;
 }
+.card__section .comments {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
 /* card css */
 
 /* footer css */
@@ -855,6 +865,7 @@ textarea {
   background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
+  display: none;
 }
 
 .timeoutPop {
@@ -869,6 +880,7 @@ textarea {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  display: none;
 }
 
 .timeoutPop-body {
@@ -893,3 +905,53 @@ textarea {
   text-align: center;
 }
 /* success pop */
+
+/* Comment */
+.comment__wrapper {
+  padding: 20px;
+}
+.comment__wrapper:not(:last-child) {
+  margin-bottom: 30px;
+}
+.comment__info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.comment__title h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.comment__title span {
+  font-size: 12px;
+  margin-top: -2px;
+  display: block;
+}
+.comment__desc {
+  margin-top: 15px;
+  border-bottom: 1px solid #ccc;
+}
+.comment__time {
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.reply__box form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.reply__box form .wrapper:first-child,
+.reply__box form .wrapper:last-child {
+  grid-column: span 2;
+}
+.comment__link {
+  color: var(--primary);
+}
+.cmt__pop__wrapper:not(:first-child) {
+  margin-top: 20px;
+}
+.cmt__pop__wrapper:last-child .comment__desc {
+  border-bottom: none;
+}
+/* Comment */

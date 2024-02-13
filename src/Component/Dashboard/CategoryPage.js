@@ -5,6 +5,7 @@ import { FaArrowRight, FaRegCalendarAlt, FaRegUser } from "react-icons/fa";
 import { Link, useLocation, useParams } from "react-router-dom";
 import NavbarContext from "../Context/Navbar-Context";
 import { Fetchdata } from "../Hook/getData";
+import { BiSolidCommentDetail } from "react-icons/bi";
 
 const CategoryPage = () => {
   const { baseURL } = useContext(NavbarContext);
@@ -76,6 +77,7 @@ const CategoryPage = () => {
                           createdAt,
                           Auther,
                           Title,
+                          Comments,
                           Description,
                         } = props;
                         // to get human readable timestamp
@@ -124,12 +126,22 @@ const CategoryPage = () => {
                                 </div>
                               </div>
                               <div className="project__footer">
-                                <Link
-                                  to={`/blog-single/${_id}?categoryid=${CategoryID._id}`}
-                                  className="btn btn-light"
-                                >
-                                  <span>read more</span> <FaArrowRight />
-                                </Link>
+                                <div>
+                                  <Link
+                                    to={`/blog-single/${_id}?categoryid=${CategoryID._id}`}
+                                    className="btn btn-light"
+                                  >
+                                    <span>read more</span> <FaArrowRight />
+                                  </Link>
+                                </div>
+                                <div className="comments">
+                                  <BiSolidCommentDetail color="var(--primary)" />
+                                  {Comments.length > 0 ? (
+                                    <span>{Comments.length}</span>
+                                  ) : (
+                                    <span>0</span>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>

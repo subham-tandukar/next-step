@@ -17,7 +17,7 @@ function BlogState(props) {
   const [formValue, setFormValue] = useState(initialValue);
   const [isSubmit, setIsSubmit] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [originalList, setOriginalList] = useState(null);
+  const [originalList, setOriginalList] = useState([]);
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
 
@@ -174,6 +174,13 @@ function BlogState(props) {
       });
   };
 
+  // to view comment
+  const [commentData, setCommentData] = useState([]);
+  const handleComment = (data) => {
+    $(".view-comment-bg").fadeIn(300);
+    $(".view-comment").slideDown(500);
+    setCommentData(data.Comments);
+  };
   return (
     <BlogContext.Provider
       value={{
@@ -207,6 +214,8 @@ function BlogState(props) {
         setImage,
         isUploaded,
         setIsUploaded,
+        handleComment,
+        commentData,
       }}
     >
       {props.children}

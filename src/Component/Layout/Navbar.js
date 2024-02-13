@@ -27,7 +27,7 @@ const Navbar = () => {
           </div>
 
           <div>
-            <div className="nav-items">
+            <div className="nav-items uk-visible@m">
               <ul>
                 <li>
                   <Link to="/">home</Link>

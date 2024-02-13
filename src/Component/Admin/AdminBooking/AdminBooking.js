@@ -11,7 +11,7 @@ import NavbarContext from "../../Context/Navbar-Context";
 const AdminBooking = () => {
   const { baseURL } = useContext(NavbarContext);
   const [loading, setLoading] = useState(true);
-  const [originalList, setOriginalList] = useState(null);
+  const [originalList, setOriginalList] = useState([]);
 
   //API to hit category list
   const [bookingList, setBookingList] = useState([]);
@@ -42,6 +42,9 @@ const AdminBooking = () => {
 
   const searchInput = useRef("");
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    setSearchTerm("");
+  }, []);
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -113,14 +116,14 @@ const AdminBooking = () => {
       filterable: true,
       selector: (row) => row.Course,
     },
-    {
-      name: "Payment",
-      width: "150px",
-      sortable: true,
-      filterable: true,
-      center: true,
-      selector: (row) => (row.IsPaid ? "Paid" : "UnPaid"),
-    },
+    // {
+    //   name: "Payment",
+    //   width: "150px",
+    //   sortable: true,
+    //   filterable: true,
+    //   center: true,
+    //   selector: (row) => (row.IsPaid ? "Paid" : "UnPaid"),
+    // },
   ];
   return (
     <>
@@ -167,6 +170,7 @@ const AdminBooking = () => {
                             className="uk-input searchField"
                             placeholder="Search"
                             value={searchTerm}
+                            autoComplete="off"
                             // onChange={(e) => {
                             //   setSearchTerm(e.target.value);
                             // }}

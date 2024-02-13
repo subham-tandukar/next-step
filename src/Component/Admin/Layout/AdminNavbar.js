@@ -8,7 +8,8 @@ import NavbarContext from "../../Context/Navbar-Context";
 const AdminNavbar = () => {
   const { logout } = useContext(AuthContext);
   const { handleMobHam } = useContext(NavbarContext);
-  const userDetails = JSON.parse(localStorage.getItem("token"));
+  const userDetails = JSON.parse(localStorage.getItem("token")) !== null ? JSON.parse(localStorage.getItem("token")): {};
+  
   let navigate = useNavigate();
 
   const handleLogout = (e) => {

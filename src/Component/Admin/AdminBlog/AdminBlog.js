@@ -13,6 +13,7 @@ import BlogPop from "./BlogPop";
 import DeleteBlogPop from "./DeleteBlogPop";
 import EditBlogPop from "./EditBlogPop";
 import ViewBlogPop from "./ViewBlogPop";
+import ViewCommentPop from "./ViewCommentPop";
 
 const AdminBlog = () => {
   const {
@@ -25,8 +26,8 @@ const AdminBlog = () => {
     loading,
     setBlogList,
     originalList,
+    handleComment,
   } = useContext(BlogContext);
-
   const handleAdd = () => {
     $(".add-blog-bg").fadeIn(300);
     $(".add-blog").slideDown(500);
@@ -95,6 +96,24 @@ const AdminBlog = () => {
       name: "Auther",
       width: "100px",
       selector: (row) => row.Auther.split(" ")[0],
+    },
+
+    {
+      name: "Comments",
+      width: "120px",
+      center: true,
+      selector: (row) => {
+        return (
+          <span
+            uk-tooltip="View Comment"
+            className="comment__link"
+            onClick={() => handleComment(row)}
+          >
+            {row.Comments.length}{" "}
+            {row.Comments.length === 1 ? "Comment" : "Comments"}
+          </span>
+        );
+      },
     },
 
     {
@@ -199,8 +218,9 @@ const AdminBlog = () => {
 
               <BlogPop />
               <DeleteBlogPop />
-              <EditBlogPop/>
-              <ViewBlogPop/>
+              <EditBlogPop />
+              <ViewBlogPop />
+              <ViewCommentPop />
             </div>
           </div>
         </article>

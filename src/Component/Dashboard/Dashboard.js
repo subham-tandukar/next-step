@@ -18,6 +18,7 @@ import BlogContext from "../Context/blogContextFolder/blogContext";
 import CourseContext from "../Context/courseContextFolder/courseContext";
 import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
+import { BiSolidCommentDetail } from "react-icons/bi";
 
 const Dashboard = () => {
   const { blogList } = useContext(BlogContext);
@@ -145,7 +146,7 @@ const Dashboard = () => {
                         <div className="icon mt-10">
                           <img alt="" src={Image.url} />
                         </div>
-                        <h3>Rs.{parseInt(Price) / 100} only</h3>
+                        <h3>Rs.{parseInt(Price)} only</h3>
                         {NoOfSeat > 0 ? (
                           <p>
                             Seat Available: <strong>{NoOfSeat}</strong>{" "}
@@ -195,6 +196,7 @@ const Dashboard = () => {
                     Auther,
                     Title,
                     Description,
+                    Comments,
                   } = props;
                   // to get human readable timestamp
                   function formatDateWithTime(date) {
@@ -242,12 +244,22 @@ const Dashboard = () => {
                           </div>
                         </div>
                         <div className="project__footer">
-                          <Link
-                            to={`/blog-single/${_id}?categoryid=${CategoryID._id}`}
-                            className="btn btn-light"
-                          >
-                            <span>read more</span> <FaArrowRight />
-                          </Link>
+                          <div>
+                            <Link
+                              to={`/blog-single/${_id}?categoryid=${CategoryID._id}`}
+                              className="btn btn-light"
+                            >
+                              <span>read more</span> <FaArrowRight />
+                            </Link>
+                          </div>
+                          <div className="comments">
+                            <BiSolidCommentDetail color="var(--primary)" />
+                            {Comments.length > 0 ? (
+                              <span>{Comments.length}</span>
+                            ) : (
+                              <span>0</span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -16,7 +16,7 @@ function CourseState(props) {
   const [formValue, setFormValue] = useState(initialValue);
   const [isSubmit, setIsSubmit] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [originalList, setOriginalList] = useState(null);
+  const [originalList, setOriginalList] = useState([]);
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
 

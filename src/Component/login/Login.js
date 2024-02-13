@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../Image/halo.jpg";
+import img from "../../Image/banner.jpeg";
 import "../../Css/Login.css";
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
