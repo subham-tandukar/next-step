@@ -59,7 +59,7 @@ const ViewCoursePop = () => {
                                 borderLeft: "1px solid rgb(225, 226, 227)",
                               }}
                             >
-                              Rs.{parseInt(Price) / 100}
+                              Rs.{parseInt(Price)}
                             </td>
                           </tr>
 

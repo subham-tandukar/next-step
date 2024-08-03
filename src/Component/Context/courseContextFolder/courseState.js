@@ -67,7 +67,7 @@ function CourseState(props) {
       FLAG: "U",
       CourseID: perId,
       Title: formValue.title,
-      Price: parseInt(formValue.price) * 100,
+      Price: parseInt(formValue.price),
       NoOfSeat: formValue.noofseat,
       Image: image,
       FetchURL: `${baseURL}/api/course`,
