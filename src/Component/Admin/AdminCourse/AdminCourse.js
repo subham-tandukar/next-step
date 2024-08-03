@@ -88,7 +88,7 @@ const AdminCourse = () => {
     {
       name: "Price (Rs.)",
       width: "100px",
-      selector: (row) => parseInt(row.Price) / 100,
+      selector: (row) => parseInt(row.Price),
     },
     {
       name: "No Of Seat",

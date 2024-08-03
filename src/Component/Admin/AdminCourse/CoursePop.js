@@ -60,7 +60,7 @@ const CoursePop = () => {
       const dataForm = {
         FLAG: "I",
         Title: formValue.title,
-        Price: parseInt(formValue.price) * 100,
+        Price: parseInt(formValue.price),
         NoOfSeat: formValue.noofseat,
         Image: image,
         FetchURL: `${baseURL}/api/course`,
